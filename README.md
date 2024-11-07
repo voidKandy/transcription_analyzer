@@ -6,6 +6,7 @@ This is a really basic program for transcribing MOV files imported from an iPhon
     - [ffmpeg](https://ffmpeg.org/) - you likely already have this
     - [go](https://go.dev/)
 + [rust](https://www.rust-lang.org/)
+
 Ensure your `~/.cargo/bin` folder is in your `$PATH`
 You can do this by running the below command, if you see a result from grep, you don't need to do anything:
 ```bash
