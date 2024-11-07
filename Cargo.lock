@@ -281,9 +281,9 @@ dependencies = [
 
 [[package]]
 name = "espionox"
-version = "0.1.34"
+version = "0.1.41"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ab4665736d79c38d4d1409633bbada1bcd56c0479aaded9af99b34db2f08c59f"
+checksum = "d24888cf81d23c91184313df05c8253d166e6de93b5c90c5356f62fc31e1b734"
 dependencies = [
  "anyhow",
  "bytes",

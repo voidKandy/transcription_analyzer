@@ -6,7 +6,7 @@ edition = "2021"
 [dependencies]
 clap = { version =  "4.5.20", features = ["derive"] }
 dotenv = "0.15.0"
-espionox = "0.1.34"
+espionox = "0.1.40"
 serde = "1.0.214"
 serde_json = "1.0.132"
 tokio = { version = "1.41.0", features = ["full"] }
