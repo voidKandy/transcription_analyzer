@@ -1,7 +1,4 @@
 source .env
-AUDIO_DIR=~/Library/Mobile\ Documents/com~apple~CloudDocs/audio_journal
-TARGET_DIR=~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Ω/AudioLogs
-
 
 report_output=$(prattl report)
 if echo "$report_output" | grep -q "doesn't exist"; then
