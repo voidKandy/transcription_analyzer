@@ -1,9 +1,4 @@
-use std::{
-    collections::HashMap,
-    path::PathBuf,
-    sync::{Arc, RwLock},
-    time::{self, SystemTime},
-};
+use std::{collections::HashMap, path::PathBuf};
 
 use espionox::prelude::*;
 use serde_json::Value;
@@ -41,14 +36,14 @@ pub async fn summarize_prattl_output(
 ) -> HashMap<PathBuf, String> {
     let anth_key = std::env::var("ANTH_KEY").expect("Could not get api key");
     let sum_model = CompletionModel::default_anthropic(&anth_key);
-    let sum_agent = espionox::agents::Agent::new(Some(SUM_INIT_PROMPT), sum_model);
+    let mut sum_agent = espionox::agents::Agent::new(Some(SUM_INIT_PROMPT), sum_model);
 
     let obj = prattl_out
         .as_object()
         .expect("could not coerce json to object")
         .to_owned();
 
-    let mut all_threads = vec![];
+    let mut outmap = HashMap::new();
 
     for (k, v) in obj.into_iter() {
         let v = v.to_string();
@@ -57,20 +52,11 @@ pub async fn summarize_prattl_output(
         }
         let filename = get_name_from_key(&k);
         let filepath = target_dir.join(filename);
-        let mut thread_agent = sum_agent.clone();
-        let h = tokio::spawn(async move {
-            let summary = get_summary(&mut thread_agent, v.as_str()).await;
-            let contents = format_summary_and_transcription(&summary, v.as_str());
-            (filepath, contents)
-        });
-        all_threads.push(h);
+        let summary = get_summary(&mut sum_agent, v.as_str()).await;
+        let contents = format_summary_and_transcription(&summary, v.as_str());
+        outmap.insert(filepath, contents);
     }
 
-    let mut outmap = HashMap::new();
-    for t in all_threads.into_iter() {
-        let (k, v) = t.await.expect("problem joining thread");
-        outmap.insert(k, v);
-    }
     outmap
 }
 
