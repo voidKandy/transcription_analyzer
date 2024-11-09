@@ -34,3 +34,6 @@ source .env
 cargo run --bin transcribe_and_summarize -- -a $AUDIO_DIR -t $TARGET_DIR
 ```
 
+> **IMPORTANT**
+> I know that the program asks for user input and doesn't actually wait for it. I'm working on it
+
