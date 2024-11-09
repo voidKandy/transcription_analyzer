@@ -31,7 +31,7 @@ Then you build the rust binary, and add it to your path:
 Now you should be able to run:
 ```bash
 source .env
-cargo run --bin transcribe_and_summarize -- -a $AUDIO_DIR -t $TARGET_DIR
+cargo run --bin transcribe_and_summarize $AUDIO_DIR $TARGET_DIR
 ```
 
 > **IMPORTANT**

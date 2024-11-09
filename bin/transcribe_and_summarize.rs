@@ -10,12 +10,10 @@ use transcription_analyzer::{
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
 struct Args {
-    #[arg(short = 'a', long)]
+    #[arg(value_name = "audio directory")]
     pub audio_dir: PathBuf,
-    #[arg(short = 't', long)]
+    #[arg(value_name = "target directory")]
     pub target_dir: PathBuf,
-    // #[arg(short = 'j', long)]
-    // pub transcription_json: PathBuf,
 }
 
 fn audio_files_in_dir(dir: &PathBuf) -> Vec<PathBuf> {
@@ -34,6 +32,7 @@ fn audio_files_in_dir(dir: &PathBuf) -> Vec<PathBuf> {
             all_files
         })
 }
+
 #[tokio::main]
 async fn main() {
     dotenv::dotenv().ok();
