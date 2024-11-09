@@ -2,6 +2,7 @@ use std::{
     collections::HashMap,
     path::PathBuf,
     sync::{Arc, RwLock},
+    time::{self, SystemTime},
 };
 
 use espionox::prelude::*;
@@ -22,12 +23,15 @@ async fn get_summary(agent: &mut Agent, content: &str) -> String {
 fn format_summary_and_transcription(sum: &str, trans: &str) -> String {
     format!(
         r#"
-    {sum}
-
-    [^Recording]:
-    <small>
-    {trans}
-    </small>"#
+---
+tags: []
+---
+{sum}
+[^Recording]:
+<small>
+{trans}
+</small>
+"#
     )
 }
 
