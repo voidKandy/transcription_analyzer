@@ -56,7 +56,7 @@ pub async fn summarize_prattl_output(
         let h = tokio::spawn(async move {
             let summary = get_summary(&mut thread_agent, v.as_str()).await;
             let contents = format_summary_and_transcription(&summary, v.as_str());
-            (filepath, summary)
+            (filepath, contents)
         });
         all_threads.push(h);
     }
