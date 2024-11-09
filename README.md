@@ -22,21 +22,15 @@ touch .env
 Open `.env` in your editor and add the following variables: 
 ```bash
 ANTH_KEY="your_anthropic_key"
-# Currently you don't actually need an openai key
-OPENAI_KEY="your_openai_key"
 # where your audio files are
 AUDIO_DIR=
 # where you want the summaries to go
 TARGET_DIR=
 ```
 Then you build the rust binary, and add it to your path:
-```bash
-cargo build
-mv target/debug/transcription-analyzer ~/.cargo/bin/transcription-analyzer
-```
 Now you should be able to run:
 ```bash
-# make sure it can execute 
-chmod +x ./transcribe_icloud_audio.sh
-./transcribe_icloud_audio.sh
+source .env
+cargo run --bin transcribe_and_summarize -- -a $AUDIO_DIR -t $TARGET_DIR
 ```
+
