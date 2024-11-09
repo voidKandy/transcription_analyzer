@@ -21,7 +21,9 @@ fn format_summary_and_transcription(sum: &str, trans: &str) -> String {
 ---
 tags: []
 ---
+
 {sum}
+
 [^Recording]:
 <small>
 {trans}
