@@ -49,6 +49,7 @@ pub async fn summarize_prattl_output(
         .to_owned();
 
     let mut all_threads = vec![];
+
     for (k, v) in obj.into_iter() {
         let v = v.to_string();
         if v.trim().is_empty() {

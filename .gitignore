@@ -1,4 +1,5 @@
 /target
+.fastembed_cache/
 .test
 .tmp.json
 build.sh
